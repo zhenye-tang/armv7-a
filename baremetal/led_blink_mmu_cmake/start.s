@@ -23,7 +23,8 @@
 .equ I_Bit,           0x80            @ when I bit is set, IRQ is disabled
 .equ F_Bit,           0x40            @ when F bit is set, FIQ is disabled
 
-#define ISR_Stack_Size  (UND_Stack_Size + SVC_Stack_Size + ABT_Stack_Size + RT_FIQ_STACK_PGSZ + RT_IRQ_STACK_PGSZ)
+#define ISR_Stack_Size  (UND_Stack_Size + SVC_Stack_Size + ABT_Stack_Size \
+ + RT_FIQ_STACK_PGSZ + RT_IRQ_STACK_PGSZ)
 
 .section .data.share.isr
 /* stack */
@@ -31,7 +32,7 @@
 .globl stack_top
 
 stack_start:
-.rept 0x1400
+.rept ISR_Stack_Size
 .byte 0
 .endr
 stack_top:
