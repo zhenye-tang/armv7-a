@@ -15,9 +15,10 @@ add_custom_target(bin_generation
     VERBATIM
 )
 
-file(GLOB C_SOURCES *.c *.s)
+file(GLOB C_SOURCES *.s *.c)
 include_directories(./)
 add_executable(led_blink_mmu
+        start.S
         ${C_SOURCES}
 )
 
